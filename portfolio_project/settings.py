@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'portfolio',
     'dashboard',
 ]
@@ -135,3 +137,12 @@ STORAGES = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('Portfolio', default=''),
+    'API_KEY': config('736277586555495', default=''),
+    'API_SECRET': config('xERbitgV93SEw5t8hfuTdK6D6-I', default=''),
+}
+
+if config('Portfolio', default=''):
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
