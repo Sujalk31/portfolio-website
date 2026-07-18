@@ -1,0 +1,35 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Manage Education{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <a href="{% url 'dashboard_home' %}" class="back-link">← Back to Dashboard</a>
+    <h1>Education</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: #C6537A; margin: 15px 0;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'add_education' %}" class="btn primary" style="margin: 15px 0; display: inline-block;">+ Add Education</a>
+
+    {% for edu in education %}
+        <div class="challenge-item" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.start_date }} – {{ edu.end_date }})
+            </div>
+            <div>
+                <a href="{% url 'edit_education' edu.id %}" class="btn primary" style="padding: 8px 18px; font-size: 13px;">Edit</a>
+                <form method="POST" action="{% url 'delete_education' edu.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn secondary" style="padding: 8px 18px; font-size: 13px;">Delete</button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>No education added yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

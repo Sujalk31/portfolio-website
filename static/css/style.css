@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #EEF9FF 0%, #DFF3FF 60%, #CDEEFF 100%);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+    width: 90%;
+    margin: auto;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    color: #4F9FD9;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4A5B6A;
+    font-weight: 500;
+}
+
+/* Hero */
+.hero {
+    width: 90%;
+    margin: 50px auto 70px auto;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 46px;
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    color: #4F9FD9;
+}
+
+.hero p {
+    margin: 20px auto 0 auto;
+    max-width: 600px;
+    line-height: 1.8;
+    color: #5D6B76;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.primary {
+    background: #72C9FF;
+    color: white;
+}
+
+.primary:hover {
+    background: #5BB8F5;
+}
+
+.secondary {
+    background: #FFE3EE;
+    color: #C6537A;
+    border: 1px solid #FFC8DD;
+}
+
+.secondary:hover {
+    background: #FFD4E5;
+}
+
+/* Project cards */
+.projects {
+    width: 90%;
+    margin: 0 auto 70px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(100, 180, 255, .12);
+    border-top: 6px solid #A8DFFF;
+    transition: .3s;
+}
+
+.project-card:nth-child(3n+2) {
+    border-top: 6px solid #FFC8DD;
+}
+
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(100, 180, 255, .2);
+}
+
+.project-card .category {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4F9FD9;
+    font-weight: bold;
+}
+
+.project-card h3 {
+    color: #4A94D3;
+    margin: 10px 0;
+}
+
+.project-card p {
+    color: #5D6B76;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tech-tags span {
+    background: #EEF9FF;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 30px;
+    color: #4F9FD9;
+    border: 1px solid #CDEEFF;
+}
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    grid-column: 1 / -1;
+}
+
+/* Detail page */
+.detail-container {
+    width: 85%;
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
+    border-radius: 30px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(80, 160, 220, .15);
+}
+
+.detail-container h1 {
+    color: #4A94D3;
+    margin-bottom: 10px;
+}
+
+.detail-container h2 {
+    color: #4F9FD9;
+    margin: 30px 0 12px 0;
+    font-size: 20px;
+}
+
+.detail-container p, .detail-container li {
+    color: #5D6B76;
+    line-height: 1.8;
+}
+
+.detail-container ul {
+    padding-left: 20px;
+}
+
+.challenge-item {
+    background: #F5FBFF;
+    border-left: 4px solid #A8DFFF;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.challenge-item strong {
+    color: #4A94D3;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #4F9FD9;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+footer {
+    margin-top: 60px;
+    background: #DDF3FF;
+    text-align: center;
+    padding: 30px;
+    color: #4A5B6A;
+}
+
+@media (max-width: 850px) {
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        gap: 15px;
+    }
+
+    .detail-container {
+        padding: 30px;
+    }
+}
+
+/* Profile hero */
+.profile-hero {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+    display: block;
+    border: 4px solid white;
+    box-shadow: 0 10px 30px rgba(100, 180, 255, .2);
+}
+
+.profile-hero h1 {
+    font-size: 40px;
+    color: #333;
+}
+
+.profile-hero .title {
+    color: #4F9FD9;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 8px 0 20px 0;
+}
+
+.profile-hero .bio {
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+    color: #5D6B76;
+    line-height: 1.8;
+}
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Section headers */
+.section-title {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto 25px auto;
+    font-size: 28px;
+    color: #4A94D3;
+    text-align: center;
+}
+
+/* Skills */
+.skills-wrap {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto 40px auto;
+}
+
+.skill-category {
+    margin-bottom: 25px;
+}
+
+.skill-category h3 {
+    color: #4F9FD9;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-pill {
+    background: white;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: #4A94D3;
+    box-shadow: 0 5px 15px rgba(100, 180, 255, .1);
+}
+
+/* Timeline (experience / education) */
+.timeline {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+.timeline-item {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 25px rgba(100, 180, 255, .1);
+    border-left: 5px solid #A8DFFF;
+}
+
+.timeline-item .dates {
+    font-size: 13px;
+    color: #4F9FD9;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.timeline-item h3 {
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.timeline-item .subtitle {
+    color: #4F9FD9;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.timeline-item p {
+    color: #5D6B76;
+    font-size: 14px;
+    line-height: 1.7;
+}

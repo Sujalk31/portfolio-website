@@ -1,0 +1,28 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Dashboard Login{% endblock %}
+
+{% block content %}
+<div class="detail-container" style="max-width: 400px; text-align: center;">
+    <h1>Dashboard Login</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: #C6537A; margin-top: 15px;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" style="margin-top: 25px; text-align: left;">
+        {% csrf_token %}
+        <label style="font-size: 14px; color: #4A94D3;">Username</label>
+        <input type="text" name="username" required
+               style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border-radius: 10px; border: 1px solid #A8DFFF;">
+
+        <label style="font-size: 14px; color: #4A94D3;">Password</label>
+        <input type="password" name="password" required
+               style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border-radius: 10px; border: 1px solid #A8DFFF;">
+
+        <button type="submit" class="btn primary" style="width: 100%;">Log In</button>
+    </form>
+</div>
+{% endblock %}

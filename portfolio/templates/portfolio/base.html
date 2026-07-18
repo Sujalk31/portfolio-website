@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}" class="logo">☁️ Your Name</a>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer>
+    © 2026 Your Name • Built with Django & MongoDB
+</footer>
+
+</body>
+</html>

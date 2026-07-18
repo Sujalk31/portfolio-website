@@ -1,0 +1,59 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <a href="{% url 'dashboard_home' %}" class="back-link">← Back to Dashboard</a>
+    <h1>Edit Profile</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: #C6537A; margin: 15px 0;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if profile %}
+        {% if profile.profile_image %}
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Profile Photo</label><br>
+                <img src="/media/{{ profile.profile_image }}" style="max-width: 150px; border-radius: 50%; margin-top: 8px;">
+            </div>
+        {% endif %}
+        {% if profile.resume %}
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Resume</label><br>
+                <a href="/media/{{ profile.resume }}" target="_blank" class="btn secondary" style="margin-top: 8px; display: inline-block;">View Current Resume</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">{{ field.label }}</label><br>
+                {{ field }}
+                {% if field.help_text %}
+                    <p style="font-size: 12px; color: #888; margin-top: 4px;">{{ field.help_text }}</p>
+                {% endif %}
+                {% if field.errors %}
+                    <p style="font-size: 12px; color: #C6537A; margin-top: 4px;">{{ field.errors }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn primary">Save Profile</button>
+    </form>
+</div>
+
+<style>
+    input[type=text], input[type=url], input[type=email], input[type=number], textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #A8DFFF;
+        margin-top: 6px;
+        font-family: inherit;
+    }
+</style>
+{% endblock %}

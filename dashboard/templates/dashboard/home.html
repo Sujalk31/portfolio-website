@@ -1,0 +1,55 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <h1>Dashboard</h1>
+    <p>Welcome back, {{ request.user.username }}.</p>
+
+    <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+        <div class="project-card" style="flex: 1; min-width: 150px;">
+            <p class="category">Total</p>
+            <h3>{{ total_projects }}</h3>
+        </div>
+        <div class="project-card" style="flex: 1; min-width: 150px;">
+            <p class="category">Published</p>
+            <h3>{{ published_count }}</h3>
+        </div>
+        <div class="project-card" style="flex: 1; min-width: 150px;">
+            <p class="category">Drafts</p>
+            <h3>{{ draft_count }}</h3>
+        </div>
+        <div class="project-card" style="flex: 1; min-width: 150px;">
+            <p class="category">Featured</p>
+            <h3>{{ featured_count }}</h3>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px;">
+        <a href="{% url 'add_project' %}" class="btn primary">+ Add New Project</a>
+        <a href="{% url 'edit_profile' %}" class="btn secondary">Edit Profile</a>
+        <a href="{% url 'manage_skills' %}" class="btn secondary">Manage Skills</a>
+        <a href="{% url 'manage_experience' %}" class="btn secondary">Manage Experience</a>
+        <a href="{% url 'manage_education' %}" class="btn secondary">Manage Education</a>
+    </div>
+
+    <h2>All Projects</h2>
+    {% for project in projects %}
+        <div class="challenge-item" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <strong>{{ project.title }}</strong> —
+                {% if project.published %}Published{% else %}Draft{% endif %}
+            </div>
+            <div>
+                <a href="{% url 'edit_project' project.slug %}" class="btn primary" style="padding: 8px 18px; font-size: 13px;">Edit</a>
+                <a href="{% url 'delete_project' project.slug %}" class="btn secondary" style="padding: 8px 18px; font-size: 13px;">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No projects yet.</p>
+    {% endfor %}
+
+    <a href="{% url 'dashboard_logout' %}" class="btn secondary" style="margin-top: 25px;">Log Out</a>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Delete Project{% endblock %}
+
+{% block content %}
+<div class="detail-container" style="max-width: 500px; text-align: center;">
+    <h1>Delete Project?</h1>
+    <p style="margin: 20px 0;">
+        Are you sure you want to delete <strong>{{ project.title }}</strong>?
+        This cannot be undone.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn secondary" style="background:#FFC8DD; color:#C6537A;">
+            Yes, Delete It
+        </button>
+        <a href="{% url 'dashboard_home' %}" class="btn primary" style="margin-left: 10px;">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

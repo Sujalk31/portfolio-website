@@ -1,0 +1,113 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{% if profile %}{{ profile.name }}{% else %}My Portfolio{% endif %}{% endblock %}
+
+{% block content %}
+
+{% if profile %}
+<section class="profile-hero">
+    {% if profile.profile_image %}
+        <img src="/media/{{ profile.profile_image }}" alt="{{ profile.name }}" class="profile-photo">
+    {% endif %}
+    <h1>{{ profile.name }}</h1>
+    <p class="title">{{ profile.title }}</p>
+    {% if profile.bio %}
+        <p class="bio">{{ profile.bio }}</p>
+    {% endif %}
+    <div class="profile-links">
+        {% if profile.resume %}
+            <a href="/media/{{ profile.resume }}" target="_blank" class="btn primary">Download Resume</a>
+        {% endif %}
+        {% if profile.github_url %}
+            <a href="{{ profile.github_url }}" target="_blank" class="btn secondary">GitHub</a>
+        {% endif %}
+        {% if profile.linkedin_url %}
+            <a href="{{ profile.linkedin_url }}" target="_blank" class="btn secondary">LinkedIn</a>
+        {% endif %}
+        {% if profile.email %}
+            <a href="mailto:{{ profile.email }}" class="btn secondary">Email Me</a>
+        {% endif %}
+    </div>
+</section>
+{% else %}
+<section class="hero">
+    <h1>My <span>Portfolio</span></h1>
+    <p>AI/ML • Python • Software Development</p>
+</section>
+{% endif %}
+
+{% if skills_by_category %}
+<h2 class="section-title">Skills</h2>
+<div class="skills-wrap">
+    {% for category, skills in skills_by_category.items %}
+        <div class="skill-category">
+            <h3>{{ category }}</h3>
+            <div class="skill-pills">
+                {% for skill in skills %}
+                    <span class="skill-pill">{{ skill.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h2 class="section-title">Projects</h2>
+<section class="projects">
+    {% for project in projects %}
+        <div class="project-card">
+            {% if project.thumbnail %}
+                <img src="/media/{{ project.thumbnail }}" alt="{{ project.title }}"
+                     style="width: 100%; height: 160px; object-fit: cover; border-radius: 15px; margin-bottom: 15px;">
+            {% endif %}
+            <p class="category">{{ project.category }}</p>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.short_summary }}</p>
+            <div class="tech-tags">
+                {% for tech in project.technologies %}
+                    <span>{{ tech }}</span>
+                {% endfor %}
+            </div>
+            <a href="{% url 'project_detail' project.slug %}" class="btn primary">View Project →</a>
+        </div>
+    {% empty %}
+        <p class="empty-state">No projects yet. Add one from the admin dashboard!</p>
+    {% endfor %}
+</section>
+
+{% if experience %}
+<h2 class="section-title">Experience</h2>
+<div class="timeline">
+    {% for exp in experience %}
+        <div class="timeline-item">
+            <p class="dates">{{ exp.start_date }} – {{ exp.end_date }}</p>
+            <h3>{{ exp.role }}</h3>
+            <p class="subtitle">{{ exp.company }}</p>
+            {% if exp.description %}<p>{{ exp.description }}</p>{% endif %}
+            {% if exp.technologies %}
+                <div class="skill-pills" style="margin-top: 12px;">
+                    {% for tech in exp.technologies %}
+                        <span class="skill-pill">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if education %}
+<h2 class="section-title">Education</h2>
+<div class="timeline">
+    {% for edu in education %}
+        <div class="timeline-item">
+            <p class="dates">{{ edu.start_date }} – {{ edu.end_date }}</p>
+            <h3>{{ edu.degree }}</h3>
+            <p class="subtitle">{{ edu.institution }}</p>
+            {% if edu.description %}<p>{{ edu.description }}</p>{% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

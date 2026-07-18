@@ -1,0 +1,11 @@
+asgiref==3.12.1
+Django==6.0.7
+dnspython==2.8.0
+gunicorn==26.0.0
+mongoengine==0.29.3
+packaging==26.2
+pillow==12.3.0
+pymongo==4.17.0
+python-decouple==3.8
+sqlparse==0.5.5
+whitenoise==6.12.0

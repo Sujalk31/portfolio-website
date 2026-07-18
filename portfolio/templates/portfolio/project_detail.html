@@ -1,0 +1,110 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <a href="{% url 'home' %}" class="back-link">← Back to Projects</a>
+
+    {% if project.thumbnail %}
+        <img src="/media/{{ project.thumbnail }}" alt="{{ project.title }}"
+             style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 20px; margin-bottom: 25px;">
+    {% endif %}
+
+    <p class="category">{{ project.category }}</p>
+    <h1>{{ project.title }}</h1>
+    <p>{{ project.short_summary }}</p>
+
+    <div class="tech-tags">
+        {% for tech in project.technologies %}
+            <span>{{ tech }}</span>
+        {% endfor %}
+    </div>
+
+    {% if project.detailed_description %}
+        <h2>About This Project</h2>
+        <p>{{ project.detailed_description }}</p>
+    {% endif %}
+
+    {% if project.problem_statement %}
+        <h2>Problem Statement</h2>
+        <p>{{ project.problem_statement }}</p>
+    {% endif %}
+
+    {% if project.solution %}
+        <h2>Solution</h2>
+        <p>{{ project.solution }}</p>
+    {% endif %}
+
+    {% if project.objectives %}
+        <h2>Objectives</h2>
+        <ul>
+            {% for objective in project.objectives %}
+                <li>{{ objective }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if project.features %}
+        <h2>Key Features</h2>
+        <ul>
+            {% for feature in project.features %}
+                <li>{{ feature }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if project.workflow %}
+        <h2>Workflow</h2>
+        <p>{{ project.workflow }}</p>
+    {% endif %}
+
+    {% if project.architecture_image %}
+        <h2>System Architecture</h2>
+        <img src="/media/{{ project.architecture_image }}" alt="Architecture diagram"
+             style="width: 100%; border-radius: 15px; margin-top: 10px;">
+    {% endif %}
+
+    {% if project.screenshots %}
+        <h2>Screenshots</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            {% for shot in project.screenshots %}
+                <img src="/media/{{ shot.image }}" alt="{{ shot.caption }}"
+                     style="width: 100%; border-radius: 15px;">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if project.challenges %}
+        <h2>Challenges & Solutions</h2>
+        {% for c in project.challenges %}
+            <div class="challenge-item">
+                <strong>Problem:</strong> {{ c.problem }}<br>
+                <strong>Solution:</strong> {{ c.solution }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if project.results %}
+        <h2>Results</h2>
+        <p>{{ project.results }}</p>
+    {% endif %}
+
+    {% if project.future_improvements %}
+        <h2>Future Improvements</h2>
+        <p>{{ project.future_improvements }}</p>
+    {% endif %}
+
+    <div class="link-row">
+        {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" class="btn primary">GitHub Repo</a>
+        {% endif %}
+        {% if project.live_demo_url %}
+            <a href="{{ project.live_demo_url }}" target="_blank" class="btn secondary">Live Demo</a>
+        {% endif %}
+        {% if project.demo_video_url %}
+            <a href="{{ project.demo_video_url }}" target="_blank" class="btn secondary">▶ View Demo Video</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
