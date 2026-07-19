@@ -17,14 +17,13 @@
         {% if project.thumbnail %}
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Thumbnail</label><br>
-                <img src="/media/{{ project.thumbnail }}" style="max-width: 200px; border-radius: 10px; margin-top: 8px;">
-            </div>
+                <img src="{{ project.thumbnail }}" style="max-width: 200px; border-radius: 10px; margin-top: 8px;">
         {% endif %}
 
         {% if project.architecture_image %}
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Architecture Image</label><br>
-                <img src="/media/{{ project.architecture_image }}" style="max-width: 200px; border-radius: 10px; margin-top: 8px;">
+                <img src="{{ project.architecture_image }}" style="max-width: 200px; border-radius: 10px; margin-top: 8px;">
             </div>
         {% endif %}
 
@@ -34,7 +33,7 @@
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
                     {% for shot in project.screenshots %}
                         <div style="text-align: center;">
-                            <img src="/media/{{ shot.image }}" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px;">
+                            <img src="{{ shot.image }}" style="width: 140px; height: 100px; object-fit: cover; border-radius: 10px;">
                             <form method="POST" action="{% url 'delete_screenshot' project.slug forloop.counter0 %}" style="margin-top: 6px;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn secondary" style="padding: 5px 14px; font-size: 12px; background:#FFC8DD; color:#C6537A;">

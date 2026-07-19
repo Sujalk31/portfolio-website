@@ -17,13 +17,13 @@
         {% if profile.profile_image %}
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Profile Photo</label><br>
-                <img src="/media/{{ profile.profile_image }}" style="max-width: 150px; border-radius: 50%; margin-top: 8px;">
+                <img src="{{ profile.profile_image }}" style="max-width: 150px; border-radius: 50%; margin-top: 8px;">
             </div>
         {% endif %}
         {% if profile.resume %}
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #4A94D3; font-weight: 600;">Current Resume</label><br>
-                <a href="/media/{{ profile.resume }}" target="_blank" class="btn secondary" style="margin-top: 8px; display: inline-block;">View Current Resume</a>
+                <a href="{{ profile.resume }}" target="_blank" class="btn secondary" style="margin-top: 8px; display: inline-block;">View Current Resume</a>
             </div>
         {% endif %}
     {% endif %}

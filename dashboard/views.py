@@ -79,12 +79,13 @@ def _challenges_to_text(challenges):
     return '\n'.join(f"{c.problem} :: {c.solution}" for c in challenges)
 
 def _save_uploaded_image(image_file, subfolder):
-    """Save an uploaded image to media/<subfolder>/ and return its relative path."""
+    """Save an uploaded image and return its full accessible URL
+    (works correctly whether storage is local disk or Cloudinary)."""
     if not image_file:
         return None
     from django.core.files.storage import default_storage
     path = default_storage.save(f'{subfolder}/{image_file.name}', image_file)
-    return path
+    return default_storage.url(path)
 
 
 @login_required(login_url='dashboard_login')

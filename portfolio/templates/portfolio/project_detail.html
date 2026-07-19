@@ -7,7 +7,7 @@
     <a href="{% url 'home' %}" class="back-link">← Back to Projects</a>
 
     {% if project.thumbnail %}
-        <img src="/media/{{ project.thumbnail }}" alt="{{ project.title }}"
+        <img src="{{ project.thumbnail }}" alt="{{ project.title }}"
              style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 20px; margin-bottom: 25px;">
     {% endif %}
 
@@ -61,7 +61,7 @@
 
     {% if project.architecture_image %}
         <h2>System Architecture</h2>
-        <img src="/media/{{ project.architecture_image }}" alt="Architecture diagram"
+        <img src="{{ project.architecture_image }}" alt="Architecture diagram"
              style="width: 100%; border-radius: 15px; margin-top: 10px;">
     {% endif %}
 
@@ -69,7 +69,7 @@
         <h2>Screenshots</h2>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
             {% for shot in project.screenshots %}
-                <img src="/media/{{ shot.image }}" alt="{{ shot.caption }}"
+                <img src="{{ shot.image }}" alt="{{ shot.caption }}"
                      style="width: 100%; border-radius: 15px;">
             {% endfor %}
         </div>
