@@ -16,8 +16,10 @@ class Command(BaseCommand):
             self.stdout.write(f"\nChecking: {static_dir}")
             self.stdout.write(f"Exists: {exists}")
             if exists:
-                contents = os.listdir(static_dir)
-                self.stdout.write(f"Contents: {contents}")
-                for item in contents:
-                    full_path = os.path.join(static_dir, item)
-                    self.stdout.write(f"  {item} -> is_dir={os.path.isdir(full_path)}")
+                for root, dirs, files in os.walk(static_dir):
+                    self.stdout.write(f"DIR: {root}")
+                    for f in files:
+                        full_path = os.path.join(root, f)
+                        size = os.path.getsize(full_path)
+                        readable = os.access(full_path, os.R_OK)
+                        self.stdout.write(f"  FILE: {f} | size={size} bytes | readable={readable}")
