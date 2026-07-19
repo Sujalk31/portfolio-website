@@ -16,7 +16,7 @@
     {% endif %}
     <div class="profile-links">
         {% if profile.resume %}
-            <a href="/media/{{ profile.resume }}" target="_blank" class="btn primary">Download Resume</a>
+            <a href="{{ profile.resume }}" target="_blank" class="btn primary">Download Resume</a>
         {% endif %}
         {% if profile.github_url %}
             <a href="{{ profile.github_url }}" target="_blank" class="btn secondary">GitHub</a>
